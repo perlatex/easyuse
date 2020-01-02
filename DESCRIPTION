@@ -22,3 +22,5 @@ Imports:
     lme4,
     magrittr,
     broom.mixed
+URL: https://github.com/perlatex/easyuse
+BugReports: https://github.com/perlatex/easyuse/issues
