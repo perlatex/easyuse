@@ -19,5 +19,5 @@ library(easyuse)
 
 df <- readr::read_rds("chengdu.rds")
 
-get_ran_vals(df, school, bj, score1, score2, "class")
+get_ran_vals(df, school, class, score1, score2, "class")
 ```
