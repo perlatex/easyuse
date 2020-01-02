@@ -1,0 +1,23 @@
+---
+title: "How to do stuff"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to do stuff}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(easyuse)
+
+df <- readr::read_rds("chengdu.rds")
+
+get_ran_vals(df, school, bj, score1, score2, "class")
+```

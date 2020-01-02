@@ -1,0 +1,24 @@
+Package: easyuse
+Title: A Package To Assess Random-Effect of Student Test Scores
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Minjie",
+           family = "Wang",
+           role = c("aut", "cre"),
+           email = "wangminjiede@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: After a test finished, generally the results from different each school and different class will be put together. From this tidy data frame, the random effects of the test results are assessed.
+License: CC0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 2.1.0)
+VignetteBuilder: knitr
+Imports: 
+    dplyr,
+    lme4,
+    magrittr,
+    broom.mixed
