@@ -8,7 +8,7 @@ The goal of easyuse is to assess random-effect of several student test scores
 
 ## Installation
 
-You can install the released version of easyuse from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of easyuse with:
 
 ``` r
 devtools::install_github("perlatex/easyuse")
