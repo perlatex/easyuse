@@ -4,8 +4,8 @@
 #' @param .var_school school name.
 #' @param .var_class class name.
 #' @param .var_score_pre score-pre.
-#' @param .var_score_after score-after.
-#' @param effects  either class or school
+#' @param .var_score_after score-after, which is used as the response variable in mixed models
+#' @param effects  specification for effects, which is either class or school
 #' @export
 #' @examples
 #' get_ran_vals(df, school, bj, score1, score2, "class")
@@ -63,8 +63,8 @@ get_ran_vals <- function(.data,
       dplyr::group_by(school) %>%
       dplyr::summarise(
         num_of_students = n(),
-        mean_score_pre = mean(score_pre),
-        mean_score_after = mean(score_after)
+        mean_score_pre = mean(score_pre, na.rm = T),
+        mean_score_after = mean(score_after, na.rm = T)
       )
 
 
