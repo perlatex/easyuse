@@ -8,6 +8,14 @@
 \description{
 After a test finished, generally the results from different each school and different class will be put together. From this tidy data frame, the random effects of the test results are assessed.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/perlatex/easyuse}
+  \item Report bugs at \url{https://github.com/perlatex/easyuse/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Minjie Wang \email{wangminjiede@gmail.com} (YOUR-ORCID-ID)
 
