@@ -24,6 +24,6 @@ get_ran_vals(.data, .var_school, .var_class, .var_score_pre,
 From this tidy data frame, the random effects of the test results are assessed using lme4::lmer funciton.
 }
 \examples{
-get_ran_vals(df, school, bj, score1, score2, "class")
+get_ran_vals(df, school, class, score1, score2, "class")
 
 }

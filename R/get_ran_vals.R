@@ -8,7 +8,7 @@
 #' @param effects  specification for effects, which is either class or school
 #' @export
 #' @examples
-#' get_ran_vals(df, school, bj, score1, score2, "class")
+#' get_ran_vals(df, school, class, score1, score2, "class")
 #'
 get_ran_vals <- function(.data,
                          .var_school,
