@@ -9,16 +9,16 @@ cutoffs_modify_at(df, .vars, cutoffs)
 \arguments{
 \item{df}{data.frame}
 
-\item{.vars}{specify the variables which to be cutoffs, for example, .vars = c("x", "y", "z")}
+\item{.vars}{specify the variables which to be cutoffs, for example, .vars = c(x, y, z) or .vars = x}
 
-\item{cutoffs}{a list or vector containts cutoffs value for variables, 
+\item{cutoffs}{a list or vector containts cutoffs-value for variables, 
 this vector has the same length as .vars}
 }
 \value{
 deprivation data.frame
 }
 \description{
-To be specific, given a cutoff value for each variables of data.frame, 
+To be specific, given a cutoff-value for each variables of data.frame, 
 if the value of variable is greater than the corresponding cutoff, the value of variable will be changed to 0, otherwise changed to 1.
 
 Thanks (Misha Balyasin)[https://github.com/romatik] for great help.
@@ -39,6 +39,16 @@ cutoffs <- c(
   z = 3
 )
 
+  
+df \%>\% 
+  cutoffs_modify_at(c(x), cutoffs = c(x = 13))
+
+df \%>\% 
+  cutoffs_modify_at(x, cutoffs = c(x = 13))
+
 df \%>\%
-  cutoffs_modify_at(.vars = c("x", "y", "z"), cutoffs = cutoffs)
+  cutoffs_modify_at(.vars = c(x, y), cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = c(x, y, z), cutoffs = cutoffs)
 }
