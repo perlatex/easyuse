@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ran_vals.R
 \name{get_ran_vals}
 \alias{get_ran_vals}
-\title{Assess Random-Effect of Student Test Scores}
+\title{Assess Random-Effect of Student Several Test Scores}
 \usage{
 get_ran_vals(.data, .var_school, .var_class, .var_score_pre,
   .var_score_after, effects = "class")
@@ -21,7 +21,7 @@ get_ran_vals(.data, .var_school, .var_class, .var_score_pre,
 \item{effects}{specification for effects, which is either class or school}
 }
 \description{
-From this tidy data frame, the random effects of the test results are assessed using lme4::lmer funciton.
+From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score2 ~ 1 + (1 | score1)) funciton.
 }
 \examples{
 get_ran_vals(df, school, class, score1, score2, "class")
