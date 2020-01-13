@@ -1,5 +1,5 @@
 Package: easyuse
-Title: A Package To Assess Random-Effect of Student Test Scores
+Title: A Package to make social statistics more easy and more tidyverse
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Minjie",
@@ -22,6 +22,7 @@ Imports:
     lme4,
     magrittr,
     broom.mixed,
-    rlang
+    rlang,
+    tidyselect
 URL: https://github.com/perlatex/easyuse
 BugReports: https://github.com/perlatex/easyuse/issues
