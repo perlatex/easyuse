@@ -4,7 +4,7 @@
 \name{easyuse-package}
 \alias{easyuse}
 \alias{easyuse-package}
-\title{easyuse: A Package To Assess Random-Effect of Student Test Scores}
+\title{easyuse: A Package to make social statistics more easy and more tidyverse}
 \description{
 After a test finished, generally the results from different each school and different class will be put together. From this tidy data frame, the random effects of the test results are assessed.
 }
