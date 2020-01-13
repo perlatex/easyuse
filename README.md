@@ -27,7 +27,11 @@ library(easyuse)
 data(chengdu)
 
 chengdu %>%
-  get_ran_vals(school, class, score1 = score_pre, score2 = score_after, "class")
+	get_ran_vals(.var_school= school, 
+				 .var_class = class, 
+				 .var_score_pre = score_pre, 
+				 .var_score_after = score_after, 
+				 "class")
 ```
 
 
