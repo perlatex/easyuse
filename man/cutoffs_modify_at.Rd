@@ -51,4 +51,28 @@ df \%>\%
 
 df \%>\%
   cutoffs_modify_at(.vars = c(x, y, z), cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = c(x, y, starts_with("z")), cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = x:z, cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = -id, cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = c(x, y, ends_with("z")), cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = c(x, y, starts_with("z")), cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = c(x, y, contains("z")), cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = c(x, y, matches("z")), cutoffs = cutoffs)
+
+df \%>\%
+  cutoffs_modify_at(.vars = one_of("x", "y", "z"), cutoffs = cutoffs)
 }

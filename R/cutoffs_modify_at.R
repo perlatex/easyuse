@@ -40,28 +40,59 @@
 #' 
 #' df %>%
 #'   cutoffs_modify_at(.vars = c(x, y, z), cutoffs = cutoffs)
+#'
+#' df %>%
+#'   cutoffs_modify_at(.vars = c(x, y, starts_with("z")), cutoffs = cutoffs)
+#' 
+#' df %>%
+#'   cutoffs_modify_at(.vars = x:z, cutoffs = cutoffs)
+#' 
+#' df %>%
+#'   cutoffs_modify_at(.vars = -id, cutoffs = cutoffs)
+#' 
+#' df %>%
+#'   cutoffs_modify_at(.vars = c(x, y, ends_with("z")), cutoffs = cutoffs)
+#' 
+#' df %>%
+#'   cutoffs_modify_at(.vars = c(x, y, starts_with("z")), cutoffs = cutoffs)
+#' 
+#' df %>%
+#'   cutoffs_modify_at(.vars = c(x, y, contains("z")), cutoffs = cutoffs)
+#' 
+#' df %>%
+#'   cutoffs_modify_at(.vars = c(x, y, matches("z")), cutoffs = cutoffs)
+#' 
+#' df %>%
+#'   cutoffs_modify_at(.vars = one_of("x", "y", "z"), cutoffs = cutoffs)
 
 
 
 cutoffs_modify_at <- function(df, .vars, cutoffs) {
   
-  vars <- as.list(rlang::quo_squash(rlang::enquo(.vars)))
+  # vars <- rlang::syms(.vars)
   
-  vars <- if (length(vars) == 1) {
-    vars
-  } else {
-    vars[-1]
-  }
+  
+  # vars <- as.list(rlang::quo_squash(rlang::enquo(.vars)))
+  # 
+  # vars <- if (length(vars) == 1) {
+  #   vars
+  # } else {
+  #   vars[-1]
+  # }
+  
+  
+  
+  dots <- rlang::enquos(.vars)
+  var_names <- dplyr::tbl_vars(df)
+  out_vars <- tidyselect::vars_select(var_names, !!!dots)
+  vars <- rlang::syms(out_vars)
+  
   
   quos <- purrr::map(vars, function(var) {
     rlang::quo(dplyr::if_else(!!var < cutoffs[[rlang::as_name(var)]], 1, 0))
   }) %>%
     purrr::set_names(nm = purrr::map_chr(vars, rlang::as_name))
-
+  
   df %>%
     dplyr::mutate(!!!quos)
 }
-
-
-
-
