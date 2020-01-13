@@ -22,12 +22,12 @@ This is a basic example:
 
 ``` r
 library(tidyverse)
+
 library(easyuse)
+data(chengdu)
 
-## you should download the test data "chengdu.rds" from repo
-df <- readr::read_rds("chengdu.rds")
-
-get_ran_vals(df, school, class, score1, score2, "class")
+chengdu %>%
+  get_ran_vals(school, class, score1 = score_pre, score2 = score_after, "class")
 ```
 
 
