@@ -18,7 +18,7 @@ devtools::install_github("perlatex/easyuse")
 
 This is a basic example:
 
-1) For several test scores, the random effects of the test results are assessed using `lme4::lmer(score2 ~ 1 + (1 | score1))` funciton
+1) For several test scores, the random effects of the test results are assessed using `lme4::lmer(score_after ~ 1 + score_pre + (1 | effect))` function
 
 ``` r
 library(tidyverse)
