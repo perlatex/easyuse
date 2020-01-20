@@ -1,4 +1,4 @@
-#' Calculate the rowwise mean and sum of columns selected in data.frame
+#' Calculate the rowwise sum for columns selected in data.frame
 #'
 #' @param .data data.frame
 #' @param ... columns selected for rowwise `sum` or `mean` using `tidyselect` grammar
@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' iris %>%
-#'   add_row_sums(starts_with("Sepal"), .name = "Sepal.Mean")
+#'   add_row_sums(starts_with("Sepal"), .name = "Sepal.sum")
 add_row_sums <- function(.data, ..., .name = "row_sum", na.rm = FALSE) {
 
   dots <- rlang::exprs(...)
@@ -25,6 +25,19 @@ add_row_sums <- function(.data, ..., .name = "row_sum", na.rm = FALSE) {
 
 
 
+#' Calculate the rowwise mean for columns selected in data.frame
+#'
+#' @param .data data.frame
+#' @param ... columns selected for rowwise `sum` or `mean` using `tidyselect` grammar
+#' @param .name  the name of new column
+#' @param na.rm  whether to delete the missing value, `TRUE` or `FALSE`
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' iris %>%
+#'   add_row_means(starts_with("Sepal"), .name = "Sepal.Mean")
 add_row_means <- function(.data, ..., .name = "row_mean", na.rm = TRUE) {
 
   dots <- rlang::exprs(...)
@@ -39,7 +52,7 @@ add_row_means <- function(.data, ..., .name = "row_mean", na.rm = TRUE) {
 
 
 
-#' Calculate the rowwise weighted mean of columns selected in data.frame
+#' Calculate the rowwise weighted mean for columns selected in data.frame
 #'
 #' @param .data data.frame
 #' @param ...  columns selected for rowwise `sum` or `mean` using `tidyselect` grammar

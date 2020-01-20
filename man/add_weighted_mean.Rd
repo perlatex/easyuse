@@ -2,7 +2,7 @@
 % Please edit documentation in R/rowwise.R
 \name{add_weighted_mean}
 \alias{add_weighted_mean}
-\title{Calculate the rowwise weighted mean of columns selected in data.frame}
+\title{Calculate the rowwise weighted mean for columns selected in data.frame}
 \usage{
 add_weighted_mean(.data, ..., .weights, .name = "weighted_mean", na.rm = TRUE)
 }
@@ -21,7 +21,7 @@ add_weighted_mean(.data, ..., .weights, .name = "weighted_mean", na.rm = TRUE)
 
 }
 \description{
-Calculate the rowwise weighted mean of columns selected in data.frame
+Calculate the rowwise weighted mean for columns selected in data.frame
 }
 \examples{
 df <- tribble(

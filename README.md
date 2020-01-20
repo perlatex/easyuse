@@ -41,7 +41,7 @@ df <- tribble(
    ~id, ~x, ~y, ~z, ~g,
    #--|--|--|--|--
    "a", 13.1, 14, 4, 1,
-   "b", 15.2, 7, 5, 0,
+   "b", 11.2, 7, 5, 0,
    "c", 12.5, 10, 1, 0,
    "d", 20, 11, 3, 1
    )
@@ -84,4 +84,25 @@ df %>%
 2 b         0     1     5     0
 3 c         1     1     1     0
 4 d         0     1     3     1
+```
+
+3) Calculate the rowwise weighted mean for columns selected in data.frame
+``` r
+weights <- c(
+   x = 0.25,
+   y = 0.25,
+   z = 0.25,
+   g = 0.25
+ )
+
+df %>% 
+  add_weighted_mean(x:g, .name = "wt_mean", .weights = weights)
+
+# A tibble: 4 x 6
+  id        x     y     z     g wt_mean
+  <chr> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 a      13.1    14     4     1    8.02
+2 b      11.2     7     5     0    5.8 
+3 c      12.5    10     1     0    5.88
+4 d      20      11     3     1    8.75
 ```
