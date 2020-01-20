@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Minjie Wang \email{wangminjiede@gmail.com} (YOUR-ORCID-ID)
+\strong{Maintainer}: Minjie Wang \email{wangminjiede@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 
 }
 \keyword{internal}

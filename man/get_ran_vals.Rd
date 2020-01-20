@@ -4,8 +4,14 @@
 \alias{get_ran_vals}
 \title{Assess Random-Effect of Student Several Test Scores}
 \usage{
-get_ran_vals(.data, .var_school, .var_class, .var_score_pre,
-  .var_score_after, effects = "class")
+get_ran_vals(
+  .data,
+  .var_school,
+  .var_class,
+  .var_score_pre,
+  .var_score_after,
+  effects = "class"
+)
 }
 \arguments{
 \item{.data}{data.frame including school name, class name, score-pre and score-after of each student}
