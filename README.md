@@ -18,7 +18,7 @@ devtools::install_github("perlatex/easyuse")
 
 This is a basic example:
 
-1) For several test scores, the random effects of the test results are assessed using `lme4::lmer(score_after ~ 1 + score_pre + (1 | effect))` function
+1) For several test scores, the random effects of the test results are assessed using `lme4::lmer(score_post ~ 1 + score_pre + (1 | effect))` function
 
 ``` r
 library(tidyverse)
@@ -30,7 +30,7 @@ chengdu %>%
 	get_ran_vals(.var_school= school, 
 				 .var_class = class, 
 				 .var_score_pre = score_pre, 
-				 .var_score_after = score_after, 
+				 .var_score_post = score_post, 
 				 "class")
 ```
 

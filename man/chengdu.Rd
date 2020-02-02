@@ -10,7 +10,7 @@
   \item{id}{school id}
   \item{class}{class id}
   \item{score_pre}{first test result}
-  \item{score_after}{second test result}
+  \item{score_post}{second test result}
 }}
 \usage{
 chengdu

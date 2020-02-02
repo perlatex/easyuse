@@ -9,12 +9,12 @@ get_ran_vals(
   .var_school,
   .var_class,
   .var_score_pre,
-  .var_score_after,
+  .var_score_post,
   effects = "class"
 )
 }
 \arguments{
-\item{.data}{data.frame including school name, class name, score-pre and score-after of each student}
+\item{.data}{data.frame including school name, class name, score-pre and score-post of each student}
 
 \item{.var_school}{school name.}
 
@@ -22,12 +22,12 @@ get_ran_vals(
 
 \item{.var_score_pre}{score-pre.}
 
-\item{.var_score_after}{score-after, which is used as the response variable in mixed models}
+\item{.var_score_post}{score-post, which is used as the response variable in mixed models}
 
 \item{effects}{specification for effects, which is either class or school}
 }
 \description{
-From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score2 ~ 1 + (1 | score1)) funciton.
+From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score_post ~ 1 + (1 | score_pre)) funciton.
 }
 \examples{
 get_ran_vals(df, school, class, score1, score2, "class")

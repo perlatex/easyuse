@@ -1,10 +1,10 @@
 #' @title Assess Random-Effect of Student Several Test Scores
-#' @description From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score2 ~ 1 + (1 | score1)) funciton.
-#' @param .data data.frame including school name, class name, score-pre and score-after of each student
+#' @description From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score_post ~ 1 + (1 | score_pre)) funciton.
+#' @param .data data.frame including school name, class name, score-pre and score-post of each student
 #' @param .var_school school name.
 #' @param .var_class class name.
 #' @param .var_score_pre score-pre.
-#' @param .var_score_after score-after, which is used as the response variable in mixed models
+#' @param .var_score_post score-post, which is used as the response variable in mixed models
 #' @param effects  specification for effects, which is either class or school
 #' @export
 #' @examples
@@ -14,7 +14,7 @@ get_ran_vals <- function(.data,
                          .var_school,
                          .var_class,
                          .var_score_pre,
-                         .var_score_after,
+                         .var_score_post,
                          effects = "class") {
 
   stopifnot(
@@ -27,10 +27,10 @@ get_ran_vals <- function(.data,
      school      = {{.var_school}},
      class       = {{.var_class}},
      score_pre   = {{.var_score_pre}},
-     score_after = {{.var_score_after}}
+     score_post  = {{.var_score_post}}
     ) %>%
     tidyr::unite(school, class, col = "school_plus_class", sep = "_", remove = FALSE) %>%
-    dplyr::mutate_at(vars(score_pre, score_after), as.numeric)
+    dplyr::mutate_at(vars(score_pre, score_post), as.numeric)
 
 
   if (effects == "class") {
@@ -39,12 +39,12 @@ get_ran_vals <- function(.data,
       dplyr::summarise(
         num_of_students = n(),
         mean_score_pre = mean(score_pre),
-        mean_score_after = mean(score_after)
+        mean_score_post = mean(score_post)
       )
 
     result_class <-
       lme4::lmer(
-        score_after ~ 1 + score_pre + (1 | school_plus_class),
+        score_post ~ 1 + score_pre + (1 | school_plus_class),
         data = df_nest
       ) %>%
       broom.mixed::tidy(., effects = "ran_vals") %>%
@@ -53,7 +53,7 @@ get_ran_vals <- function(.data,
 
     result <- result_class %>%
       dplyr::left_join(df_stat, by = c("level" = "school_plus_class")) %>%
-      dplyr::mutate_at(vars(estimate, mean_score_pre, mean_score_after),
+      dplyr::mutate_at(vars(estimate, mean_score_pre, mean_score_post),
         .funs = ~ round(., 2)
       )
   }
@@ -64,13 +64,13 @@ get_ran_vals <- function(.data,
       dplyr::summarise(
         num_of_students = n(),
         mean_score_pre = mean(score_pre, na.rm = T),
-        mean_score_after = mean(score_after, na.rm = T)
+        mean_score_post = mean(score_post, na.rm = T)
       )
 
 
     result_school <-
       lme4::lmer(
-        score_after ~ 1 + score_pre + (1 | school),
+        score_post ~ 1 + score_pre + (1 | school),
         data = df_nest
       ) %>%
       broom.mixed::tidy(., effects = "ran_vals") %>%
@@ -78,7 +78,7 @@ get_ran_vals <- function(.data,
 
     result <- result_school %>%
       dplyr::left_join(df_stat, by = c("level" = "school")) %>%
-      dplyr::mutate_at(vars(estimate, mean_score_pre, mean_score_after),
+      dplyr::mutate_at(vars(estimate, mean_score_pre, mean_score_post),
         .funs = ~ round(., 2)
       )
   }
