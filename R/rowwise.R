@@ -136,24 +136,25 @@ add_weighted_sum <- function(.data, ..., .weights, .name = "weighted_sum", na.rm
 #'
 #' df %>% add_weighted_mean(x:g, .name = "wt_mean", .weights = weights)
 add_weighted_mean <- function(.data, ..., .weights, .name = "weighted_mean", na.rm = TRUE) {
-  
+
   sel <- tidyselect::vars_select(tbl_vars(.data), ...)
   vars <- rlang::syms(sel)
-  
-  
+
+
   quos <- purrr::map(vars, function(var) {
     rlang::quo( !!var * .weights[[rlang::as_name(var)]] )
   }) %>%
     purrr::set_names(nm = purrr::map_chr(vars, rlang::as_name))
-  
-  
+
+
   col <- .data %>%
     dplyr::transmute(!!!quos)
-  
+
   .data %>%
-    dplyr::mutate(!!rlang::sym(.name) := purrr::pmap_dbl(col, lift_vd(mean), na.rm = na.rm))
-  
-  
+    dplyr::mutate(
+      !!rlang::sym(.name) := purrr::pmap_dbl(col, lift_vd(mean, na.rm = na.rm))
+    )
+
 }
 
 

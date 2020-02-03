@@ -18,7 +18,8 @@ devtools::install_github("perlatex/easyuse")
 
 This is a basic example:
 
-1) For several test scores, the random effects of the test results are assessed using `lme4::lmer(score_post ~ 1 + score_pre + (1 | effect))` function
+1) For several test scores, the random effects of the test results are assessed using
+`lme4::lmer(score_post ~ 1 + score_pre + (1 | effect))` function
 
 ``` r
 library(tidyverse)
@@ -26,12 +27,13 @@ library(tidyverse)
 library(easyuse)
 data(chengdu)
 
-chengdu %>%
-	get_ran_vals(.var_school= school, 
-				 .var_class = class, 
-				 .var_score_pre = score_pre, 
-				 .var_score_post = score_post, 
-				 "class")
+chengdu %>% get_ran_vals(
+  .var_school = school,
+  .var_class = class,
+  .var_score_pre = score_pre,
+  .var_score_post = score_post,
+  effects = "class"
+)
 ```
 
 
@@ -86,7 +88,7 @@ df %>%
 4 d         0     1     3     1
 ```
 
-3) Calculate the rowwise weighted mean for columns selected in data.frame
+3) Calculate the rowwise weighted mean or sum for columns selected in data.frame
 ``` r
 weights <- c(
    x = 0.25,
@@ -96,7 +98,7 @@ weights <- c(
  )
 
 df %>% 
-  add_weighted_mean(x:g, .name = "wt_mean", .weights = weights)
+  add_weighted_sum(x:g, .name = "wt_sum", .weights = weights)
 
 # A tibble: 4 x 6
   id        x     y     z     g wt_mean
@@ -105,4 +107,16 @@ df %>%
 2 b      11.2     7     5     0    5.8 
 3 c      12.5    10     1     0    5.88
 4 d      20      11     3     1    8.75
+
+
+
+df %>%
+  add_weighted_mean(x:g, .name = "wt_mean", .weights = weights)
+# A tibble: 4 x 6
+  id        x     y     z     g wt_mean
+  <chr> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 a      13.1    14     4     1    2.01
+2 b      15.2     7     5     0    1.7 
+3 c      12.5    10     1     0    1.47
+4 d      20      11     3     1    2.19
 ```
