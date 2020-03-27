@@ -9,9 +9,27 @@
 #' @export
 #'
 #' @examples
-#'  df %>%
-#'   chop_standard_at(.var = value, .group = type, .pitch = id)
+#' library(tidyverse)
+#' library(easyuse)
+#' data(ChineseTones)
 #'
+#' d <- ChineseTones
+#'
+#' m <- d %>%
+#'   group_by(type) %>%
+#'   summarise_if(is.numeric, mean) %>%
+#'   modify_at(vars(starts_with("p")), log10)
+#'
+#' ld <- m %>%
+#'   pivot_longer(
+#'     cols = starts_with("p"),
+#'     names_to = "id",
+#'     values_to = "value"
+#'   ) %>%
+#'   mutate(time = 1000 * time * seq(0, 1, by = 0.1))
+#'
+#' ld %>%
+#'   chop_standard_at(.var = value, .group = type, .pitch = id)
 chop_standard_at <- function(.data, .var, .group, .pitch) {
 
 	df_longer <- .data %>%
