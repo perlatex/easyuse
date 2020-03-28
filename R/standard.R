@@ -69,6 +69,11 @@ chop_standard_at <- function(.data, .var, .group, .pitch) {
 		(x - std$logmean) / std$logsd
 	}
 
+	print(glue::glue("standard formula:  ",
+	                 "mean = {round(std$logmean, 6)}, ",
+	                 "sd = {round(std$logsd, 6)}")
+	 )
+
 	# return .data after standarded
 	pitch <- .data %>%
 		dplyr::mutate(value = standard(value))
