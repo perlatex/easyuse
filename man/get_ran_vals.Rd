@@ -27,7 +27,7 @@ get_ran_vals(
 \item{effects}{specification for effects, which is either class or school}
 }
 \description{
-From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score_post ~ 1 + (1 | score_pre)) funciton.
+From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score_post ~ 1 + score_pre + (1 | effect)) funciton.
 }
 \examples{
 get_ran_vals(df, school, class, score1, score2, "class")

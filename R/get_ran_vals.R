@@ -1,5 +1,5 @@
 #' @title Assess Random-Effect of Student Several Test Scores
-#' @description From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score_post ~ 1 + (1 | score_pre)) funciton.
+#' @description From this tidy data frame, the random effects of the test results are assessed using lme4::lmer(score_post ~ 1 + score_pre + (1 | effect)) funciton.
 #' @param .data data.frame including school name, class name, score-pre and score-post of each student
 #' @param .var_school school name.
 #' @param .var_class class name.
